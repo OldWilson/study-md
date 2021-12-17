@@ -125,3 +125,38 @@
 
 ## 高级命令
 
+* vi
+  * 查找字符串：<font>/字符串</font>
+  * 显示行号：<font>set nu</font>
+  * 复制粘贴：连按<font>yy</font>复制，按<font>p</font>粘贴
+  * 快速跳到文件首行：命令模式输入<font>gg</font>
+  * 快速跳到文件末行：命令模式输入<font>G</font>
+* 日期
+  * date命令默认获取系统当前时间
+  * <font>date +"%Y-%m-%d %H:%M:%S"</font>：格式化 2026-03-29 21:06:45
+  * <font>date +%s</font>：获取时间戳，秒数
+  * <font>date +%s"000"</font>：获取毫秒数
+  * <font>date --date="2026-01-01 00:00:00" +%s</font>：获取指定时间的时间戳
+  * <font>date --date="1 days ago"</font>：获取昨天的日期
+  * <font>date --date="1 days ago" +%Y-%m-%d</font>：获取昨天的日期
+  * <font>date --date="2021-03-01 1 days ago" +%d</font>：获取2月份的天数
+* 进程相关
+  * ps：显示进程信息
+    * <font>ps -ef | grep java</font>
+  * netstat：显示端口信息
+    * 安装：<font>yum install -y net-tools</font>
+    * <font>netstat -anp</font>
+  * jps：显示java进程信息
+  * top：动态监视进程信息。包括进程ID、内存占用、CPU占用等
+* ip、hostname
+  * 设置静态ip地址：<font>/etc/sysconfig/network-scripts/ifcfg-ens33</font>
+  * 查看hostname：<font>hostname</font>
+  * 设置hostname：
+    * 立即生效，重启后就失效了：<font>hostname test</font>
+    * 永久 生效：<font>vi /etc/hostname</font>
+* 防火墙
+  * 查看防火墙状态：<font>status firewalld</font>
+  * 关闭防火墙：
+    * 临时关闭，重启失效：<font>systemctl stop firewalld</font>
+    * 重启生效，永久有效：<font>systemctl disable firewalld</font>
+    * 查看开机启动项：<font>systemctl list-unit-files | grep firewalld</font>
