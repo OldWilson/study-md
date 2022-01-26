@@ -2,10 +2,55 @@
 
 ## command
 
-### git commit
+### 放弃本地文件修改
 
-#### git commit --amend
+* 删除本地修改的文件
 
-1. 作用：提交代码后，发现一个地方改错，下次提交时不想保留上一次的记录；或者上次commit message描述有误，可以使用此命令修改。
-2. 
+  ```
+  git checkout -- 文件名
+  git checkout -- 文件名1 文件名2
+  ```
+
+### 撤销本地修改
+
+* ```
+  git reset HEAD~        # 保留修改的文件
+  git reset HEAD~N
+  git reset --hard HEAD~ # 丢失本地修改的文件
+  ```
+
+### 从git中删除文件而不从文件系统中删除
+
+* git add后，要从暂存区删除某个文件，本地文件系统保留
+
+  ```bash
+  git reset filename
+  ```
+
+* 将文件添加到.gitingore
+
+  ```bash
+  echo filename >> .gitignoreß
+  ```
+
+### 编辑commit未push的信息
+
+* ```bash
+  git commit --amend   # start $EDITOR to edit the message
+  git commit --amend   # set the new message directly
+  ```
+
+* --amend会创建一个替换前一个提交的新提交。不能修改已push到远程仓库的提交。ß
+
+### 推送前清理本地提交
+
+### 恢复推送的提交
+
+### 避免重复的合并冲突
+
+### 找到合并后破坏了某些内容的提交
+
+### 使用git hook避免常见错误
+
+
 
