@@ -75,3 +75,42 @@
   * Signature：对前面的两部分的数据进行签名，防止数据篡改。
 
     * 首先需要定义一个密钥，这个密钥只有服务器知道，不能泄露给用户，然后使用header中指定的签名算法算出签名，之后将Header、Payload和Signature三部分拼成一个字符串，每个部分用`.` 分割开。
+
+## 2. 浅拷贝和深拷贝
+
+### 浅拷贝（shallow copy）
+
+1. java中的数据类型分为基本数据类型和引用数据类型ß
+
+2. 对于基本数据类型的成员变量，浅拷贝会直接进行值传递。对其中一个对象的成员变量值进行修改，不回影响另一个对象拷贝得到的数据。
+
+3. 对于引用数据类型的成员变量（比如数据、某个类的对象等），浅拷贝会进行引用传递，也就是只是将该成员变量的引用值（内存地址）复制一份给新的对象。在一个对象中修改成员变量会影响到另一个对象的成员变量的值。
+
+4. 重写clone()方法实现浅拷贝
+
+   ```java
+   class Strudent implements Cloneable {
+     private String name;
+     private Age age;
+     private int length;
+     
+     public Object clone() {
+       Object obj = null;
+           try {
+               obj = super.clone();
+           } catch (CloneNotSupportedException e) {
+               e.printStackTrace();
+           }
+           return obj;
+     }
+   }
+   ```
+
+   
+
+### 深拷贝（deep copy）
+
+1. 不仅要复制对象的所有基本数据类型的成员变量值，还要为所有引用数据类型的成员变量申请存储空间，并复制每个引用数据类型成员变量所引用的对象，直到该对象可达到的所有对象。
+2. 简单的说，深拷贝对引用数据类型的成员变量的对象都开辟了内存空间；浅拷贝只是传递地址指向。
+3. 通过为每一个引用到的类重写clone()方法实现深拷贝
+4. 通过序列化实现深拷贝
