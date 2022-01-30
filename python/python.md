@@ -449,7 +449,131 @@
 
 ### 爬虫
 
-1. 
+### 知识补充
+
+1. 推导式
+
+   ```python
+   a = [1, 2, 3, 4, 5]
+   b = [i**2 for i in a] // 列表推导式
+   
+   c = {1, 2, 3, 4, 5}
+   d = {i**2 for i in c if i >=3} // set推导式
+   
+   students = {'aaa': 18, 'bbb': 19, 'ccc': 20}
+   keys = [key for key,value in students.items()]
+   
+   student001 = {value:key for key,value instatus.items()}// 字典
+   //元组
+   tuple001 = (key for key,value instatus.items())
+   for x in tuple001:
+     print(x)
+   
+   ```
+
+2. iterator
+
+   * 可迭代对象（list，set，dict等）：可以重复迭代，一般使用for循环
+
+   * 迭代器：只能迭代一次，可以通过for或next进行迭代
+
+     ```python
+     class Book:
+       def __init__(self):
+         self.data = ['111', '222', '333']
+         self.cur = 0
+         pass
+       def __iter__(self):
+         return self
+       def __next__(self):
+         if self.cur >= len(self.data):
+           raise StopIteration()
+         r = self.data[self.cur]
+         self.cur += 1
+         return r
+       
+     books = Books()
+     for book in books:
+       print(book)
+     print(next(book))
+     ```
+
+3. 生成器：generator
+
+   ```python
+   def gen(max):
+     n = 0
+     while n <= max:
+       n += 1
+       yield n
+       
+   g = gen(100)
+   print(next(g))
+   ```
+
+4. None是NoneType类型
+
+5. python把0，空序列，空几何和None都看作False
+
+6. 装饰器等副作用：改变原函数名，原函数注释信息也将不显示
+
+   ```python
+   import time
+   import functools import wraps
+   
+   def timePrint(func):
+     @wraps(func)
+     def test(*args):
+       print(time.time())
+       func(*args)
+     return test
+     
+   @timePrint
+   def f1(param):
+     print('This is a function. funcName: ', f1.__name__)
+   ```
+
+7. 海象运算符 walrus operator
+
+   * :=：3.8v
+
+   * ```python
+     a = 'python'
+     
+     if (b := len(a)) > 5:
+       print(str(b))
+     ```
+
+8. 关键字做字符串拼接
+
+   ```python
+   messageId = '111'
+   print('messageid: ' + messageid)
+   print(f'messageid: {messageId}')
+   ```
+
+9. 数据类dataclass装饰器
+
+   * 应用场景：类的实例属性赋值
+
+     ```python
+     class Student():
+       def __init__(self, name, age, sex):
+         self.name = name
+         self.age = age
+         self.sex = sex
+         
+     # 装饰器
+     from dataclasses import dataclass
+     
+     @dataclass
+     class Student():
+       name: str
+       age: int
+       sex: str
+     ```
+
+     
 
 ### Flask
 
