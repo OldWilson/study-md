@@ -1,0 +1,95 @@
+{
+  "main": {
+    "id": "aaa1496d303730f3",
+    "type": "split",
+    "children": [
+      {
+        "id": "c5d39f03e6417f3b",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "aws/stepfunction.md",
+            "mode": "source",
+            "source": false
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "39c9dc5cde428c12",
+    "type": "split",
+    "children": [
+      {
+        "id": "a231094b41c1bbc7",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "5f79d1790d3f6f1c",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "efb63ae8c1e6be90",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "bbba17b0b8126d3e",
+    "type": "split",
+    "children": [
+      {
+        "id": "c07b6a7d90826812",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "87fb54b8a36dbdf6",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "aws/stepfunction.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "c5d39f03e6417f3b",
+  "lastOpenFiles": [
+    "aws/stepfunction.md",
+    "aws/cognito.md"
+  ]
+}

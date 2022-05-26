@@ -12,12 +12,11 @@
 
   * <font title="green">解决方法</font>
 
-  * 修改代理
+    修改代理
 
     ```
     git config --global --unset http.proxy
     git config --global --unset https.proxy
     ```
 
-  
   

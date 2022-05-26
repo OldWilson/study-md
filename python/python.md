@@ -2,6 +2,37 @@
 
 ## 基础
 
+### 字符串
+
+1. 切片
+
+   * 没有步长的简单切片
+
+     * 语法格式：s[start:stop]
+
+       ```python
+       s = 'abcde'
+       s[1:3] # bc
+       s[-1]  # e
+       s[1:]  # bcde
+       s[:-1] # abcd
+       s[-3:] # cde
+       ```
+
+   * 有步长的切片
+
+     * 语法格式：s[start: stop: stride]
+
+     * stride：表示取得字符串的间隔
+
+       ```
+       s = 'abcde'
+       s[1:4:2] # bd
+       s[::-1]  # edcba
+       ```
+
+       
+
 ### 模块
 
 1. import
