@@ -96,3 +96,67 @@ config.vm.synced_folder "../data", "/vagrant_data", type: "rsync"
 ### 4. Provision
 
 1. provision是指在虚拟机初次创建的时候，vagrant自动去执行的构造任务。
+
+## QA
+
+### 1. VBoxManage: error: Code E_ACCESSDENIED (0x80070005) - Access denied (extended info not available)
+
+* 问题描述
+
+  ```shell
+  There was an error while executing `VBoxManage`, a CLI used by Vagrant
+  for controlling VirtualBox. The command and stderr is shown below.
+  
+  Command: ["hostonlyif", "ipconfig", "vboxnet0", "--ip", "192.168.205.1", "--netmask", "255.255.255.0"]
+  
+  Stderr: VBoxManage: error: Code E_ACCESSDENIED (0x80070005) - Access denied (extended info not available)
+  VBoxManage: error: Context: "EnableStaticIPConfig(Bstr(pszIp).raw(), Bstr(pszNetmask).raw())" at line 242 of file VBoxManageHostonly.cpp
+  ```
+
+* 解决办法
+
+  * 打开 系统偏好设置 -> 安全性与隐私 -> 通用，解锁
+
+  * 加载vbox驱动
+
+    ```sh
+    sudo /Library/Application\ Support/VirtualBox/LaunchDaemons/VirtualBoxStartup.sh restart
+    ```
+
+  * 创建/etc/vbox/networks.conf，并添加内容 “* 0.0.0.0/0 ::/0”
+
+    ```sh
+    cat /etc/vbox/networks.conf
+    * 0.0.0.0/0 ::/0
+    ```
+
+
+
+### 2. mount: unknown filesystem type 'vboxsf'
+
+* 问题描述
+
+  ```sh
+  Vagrant was unable to mount VirtualBox shared folders. This is usually
+  because the filesystem "vboxsf" is not available. This filesystem is
+  made available via the VirtualBox Guest Additions and kernel module.
+  Please verify that these guest additions are properly installed in the
+  guest. This is not a bug in Vagrant and is usually caused by a faulty
+  Vagrant box. For context, the command attempted was:
+  
+  mount -t vboxsf -o uid=1000,gid=1000 home_vagrant_labs /home/vagrant/labs
+  
+  The error output from the command was:
+  
+  mount: unknown filesystem type 'vboxsf'
+  ```
+
+* 解决办法
+
+  ```sh
+  vagrant plugin install vagrant-vbguest --plugin-version 0.21
+  ```
+
+  
+
+  

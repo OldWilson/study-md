@@ -1,3 +1,8 @@
+---
+typora-copy-images-to: ./resources/Dart单线程.png
+typora-root-url: ./resources
+---
+
 # Flutter
 
 ## Dart
@@ -8,15 +13,38 @@
 
 #### Dart 单线程
 
-![Dart单线程](C:\workspace\all\study-md\app\resources\Dart单线程.png)
+<img src="/Dart单线程.png" style="zoom:75%;" />
 
 ## Widget
 
 1. 无状态组件
    * 可以理解为将外部传入的数据转换为界面展示的内容，只会渲染一次
+   
 2. 有状态组件
    * 是定义交互逻辑和业务数据
    * 可以理解为具有动态可交互的内容界面，会根据数据的变化进行多次渲染
+   
 3. 基础组件
-   * Text：文本
+   * Text：文本显示组件，里面包含了文本类相关的样式以及排版相关的配置信息
+   * Image：图片显示组件，里面包含了图片的来源设置，以及图片的配置
+   * Icon：Icon库，里面是flutter原生支持的一些小的icon
+   * FlatButton：包含点击动作的组件
+   * Row：布局组件，在水平方向上依次排列组件
+   * Column：布局组件，在垂直方向上依次排列组件
+   * Container：布局组件，容器组件，这点类似于前端的body
+   * Expanded：可以按比例扩伸Row、Column和Flex子组件所占用的空间，这点就是前端所介绍的flex布局设计
+   * Padding：可填充空白区域组件，这点和前端的padding功能基本一致
+   * ClipRRect：圆角组件，可以让子组件有圆形边角
+   
+3. 组件组合要点
+   
+   动态组件下的子组件如果过多，则在组件更新的时候，会导致子组件的全部更新，从而引发性能。则需要注意一下几点
+   
+   * 尽可能减少动态组件下的静态组件
+   * 数据来源相同的部分组合为一个组件
+   * 使用行或者列作为合并的条件
+   * 功能相同的部分，转换为基础组件
+   * 合并后根节点为Container
+   
+5. 
 
