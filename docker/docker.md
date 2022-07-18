@@ -7,12 +7,23 @@
 1. 介绍
 
    * Docker image是一个`read-only`文件
-
    * 这个文件包含文件系统、源码、库文件、依赖及工具等一些运行application所需要的文件
-
    * 可以理解成一个模版
-
    * docker image具有分层的概念
+   
+2. 通过commit创建镜像
+
+3. scratch镜像
+
+   * 空的Docker镜像
+
+   * ```dockerfile
+     FROM scratch
+     ADD hello /
+     CMD ["hello"]
+     ```
+
+     
 
 ### 2. 容器
 
@@ -71,6 +82,7 @@ docker image inspect [id/name]
 docker image ls
 # 删除
 docker image rm [id/name]
+docker image prune -a
 
 # 导出
 docker image save nginx:1.20.0 -o nginx.image
@@ -95,6 +107,9 @@ docker container ps / docker ps
 
 docker container stop $(docker container ps -qa)
 
+# delete all container
+docker system prune -f
+
 
 ```
 
@@ -109,7 +124,68 @@ docker image build -t hello .
 docker run -it hello
 ```
 
+### 2. 文件构成
 
+#### 1. FROM
+
+* 基础镜像的选择
+
+#### 2. RUN
+
+* 主要用于Image里执行命令
+* 每一行的RUN命令都会产生一层image layer，导致镜像的臃肿
+
+#### 3. ADD，COPY，WORKDIR
+
+* COPY和ADD都可以把本地文件复制到镜像中，如果目标目录不存在，则会自动创建
+* ADD：如果复制的文件是一个gzip等压缩文件时，ADD会自动去解压缩文件
+
+#### 4. ARG，ENV
+
+* ARG可以在镜像build的时候动态修改value，通过`--build-arg`
+
+* ```dockerfile
+  ENV VERSION=1.0.1
+  ARG VERSION=1.0.1
+  ```
+
+* ```sh
+  docker image build -f .\Dockerfile -t hello --build-arg VERSION=1.0.2 .
+  ```
+
+#### 5. CMD
+
+* 用来设置容器启动时默认会执行的命令
+* 如果docker container run 启动容器时指定了其他命令，则CMD命令会被忽略
+* 如果定义了多个CMD，只有最后有一个会被执行
+
+#### 6. ENTRYPOINT
+
+* 可以设置容器启动时要执行的命令
+
+* ENTRYPOINT设置的命令，一定会被执行
+
+* 命令格式
+
+  * shell格式
+
+    * ```dockerfile
+      CMD echo "hello docker"
+      CMD echo "hello $NAME"
+      
+      ENTRYPOINT echo "hello docker"
+      ```
+
+  * exec格式
+
+    * ```dockerfile
+      CMD ["echo", "hello docker"]
+      CMD ["sh", "-c", "echo hello $NAME"]
+      
+      ENTRYPOINT ["echo", "hello docker"]
+      ```
+
+      
 
 ## Docker 存储
 
