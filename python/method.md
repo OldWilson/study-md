@@ -1,8 +1,0 @@
-# Python Method
-
-## zip()
-
-
-
-## map()
-
