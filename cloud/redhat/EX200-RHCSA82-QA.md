@@ -1136,7 +1136,7 @@ $ sudo tail /var/log/messages
 PASS_MAX_DAYS   20
 ```
 ```bash
-# useradd dog
+x# useradd dog
 
 # chage -l dog
 Last password change			: Apr 29, 2021
